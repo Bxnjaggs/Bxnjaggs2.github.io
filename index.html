@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flores Amarillas</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .opciones {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .imagen {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Hola, Abril! 🌼</h1>
-    <p>Te amo mucho, esta página es para vos.</p>
+    <h1>Elige una opción 🌼</h1>
+    
+    <div class="opciones">
+        <button onclick="mostrarFlor(1)">Una Flor</button>
+        <button onclick="mostrarFlor(100)">100 Flores</button>
+    </div>
+    
+    <p id="mensaje" style="display:none;">
+        Hola, Abril.<br>
+        Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
+        Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
+        Te amo demasiado.<br>
+        Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés.<br>
+        Porque si hay algo que tengo claro, es que ningún gil te ama más que yo.
+    </p>
+
+    <div id="imagenContainer" class="imagen"></div>
+
+    <script>
+        function mostrarFlor(cantidad) {
+            document.getElementById("mensaje").style.display = "block";
+            let contenedor = document.getElementById("imagenContainer");
+            contenedor.innerHTML = "";
+            contenedor.style.display = "block";
+
+            for (let i = 0; i < cantidad; i++) {
+                let img = document.createElement("img");
+                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/49/Sunflower_from_Silesia2.jpg"; 
+                img.width = 100;
+                img.height = 100;
+                img.style.margin = "5px";
+                contenedor.appendChild(img);
+            }
+        }
+    </script>
 </body>
 </html>
