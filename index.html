@@ -10,14 +10,19 @@
             text-align: center;
             font-family: 'Pacifico', cursive;
             background-color: #fff8dc;
+            transition: background 0.5s ease-in-out;
         }
         h1 {
             color: #ffcc00;
             font-size: 36px;
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
         }
         .opciones {
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 1s;
         }
         button {
             padding: 10px 20px;
@@ -29,13 +34,17 @@
             background-color: #ffcc00;
             color: #fff;
             font-weight: bold;
+            transition: transform 0.3s ease;
         }
         button:hover {
             background-color: #ffb700;
+            transform: scale(1.1);
         }
-        .imagen {
+        .imagen, #mensaje {
             display: none;
             margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
         p {
             font-size: 20px;
@@ -48,6 +57,10 @@
             margin: 5px;
             border-radius: 10px;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -58,7 +71,7 @@
         <button onclick="mostrarFlor(100)">100 Flores</button>
     </div>
     
-    <p id="mensaje" style="display:none;">
+    <p id="mensaje">
         Hola, Abril.<br>
         Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
         Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
@@ -71,14 +84,21 @@
 
     <script>
         function mostrarFlor(cantidad) {
-            document.getElementById("mensaje").style.display = "block";
+            let mensaje = document.getElementById("mensaje");
             let contenedor = document.getElementById("imagenContainer");
+
+            mensaje.style.display = "block";
             contenedor.innerHTML = "";
             contenedor.style.display = "block";
 
+            setTimeout(() => {
+                mensaje.style.opacity = 1;
+                contenedor.style.opacity = 1;
+            }, 100); 
+
             for (let i = 0; i < cantidad; i++) {
                 let img = document.createElement("img");
-                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg";
+                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg";  
                 contenedor.appendChild(img);
             }
         }
