@@ -34,28 +34,37 @@
             background-color: #ffcc00;
             color: #fff;
             font-weight: bold;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
         button:hover {
             background-color: #ffb700;
             transform: scale(1.1);
         }
-        .imagen, #mensaje {
-            display: none;
-            margin-top: 20px;
+        .contenido {
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            display: none;
+            animation: fadeIn 1.5s forwards;
         }
         p {
             font-size: 20px;
             margin: 20px;
             color: #333;
         }
+        .imagen-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
         img {
             width: 80px;
             height: 80px;
-            margin: 5px;
             border-radius: 10px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -71,30 +80,29 @@
         <button onclick="mostrarFlor(100)">100 Flores</button>
     </div>
     
-    <p id="mensaje">
-        Hola, Abril.<br>
-        Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
-        Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
-        Te amo demasiado.<br>
-        Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés.<br>
-        Porque si hay algo que tengo claro, es que ningún gil te ama más que yo.
-    </p>
+    <div id="contenido" class="contenido">
+        <p>
+            Hola, Abril.<br>
+            Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
+            Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
+            Te amo demasiado.<br>
+            Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés.<br>
+            Porque si hay algo que tengo claro, es que ningún gil te ama más que yo.
+        </p>
 
-    <div id="imagenContainer" class="imagen"></div>
+        <div id="imagenContainer" class="imagen-container"></div>
+    </div>
 
     <script>
         function mostrarFlor(cantidad) {
-            let mensaje = document.getElementById("mensaje");
+            let contenido = document.getElementById("contenido");
             let contenedor = document.getElementById("imagenContainer");
 
-            mensaje.style.display = "block";
-            contenedor.innerHTML = "";
-            contenedor.style.display = "block";
+            contenido.style.display = "block";
+            contenido.style.opacity = "1";
 
-            setTimeout(() => {
-                mensaje.style.opacity = 1;
-                contenedor.style.opacity = 1;
-            }, 100); 
+            contenedor.innerHTML = "";
+            contenedor.style.opacity = "1";
 
             for (let i = 0; i < cantidad; i++) {
                 let img = document.createElement("img");
