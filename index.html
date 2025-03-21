@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flores Amarillas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Pacifico', cursive;
+            background-color: #fff8dc;
+        }
+        h1 {
+            color: #ffcc00;
+            font-size: 36px;
+            margin-top: 20px;
         }
         .opciones {
             margin-top: 20px;
@@ -17,10 +24,29 @@
             font-size: 18px;
             margin: 10px;
             cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background-color: #ffcc00;
+            color: #fff;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #ffb700;
         }
         .imagen {
             display: none;
             margin-top: 20px;
+        }
+        p {
+            font-size: 20px;
+            margin: 20px;
+            color: #333;
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -52,10 +78,7 @@
 
             for (let i = 0; i < cantidad; i++) {
                 let img = document.createElement("img");
-                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/49/Sunflower_from_Silesia2.jpg"; 
-                img.width = 100;
-                img.height = 100;
-                img.style.margin = "5px";
+                img.src = "https://i.imgur.com/qR9UTuF.jpg";  
                 contenedor.appendChild(img);
             }
         }
