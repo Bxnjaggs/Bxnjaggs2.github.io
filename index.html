@@ -3,113 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Amarillas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Flores para Abril</title>
     <style>
         body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            font-family: 'Pacifico', cursive;
-            background-color: #fff8dc;
-            transition: background 0.5s ease-in-out;
+            background: linear-gradient(120deg, #ffdd57, #ffac33);
+            overflow: hidden;
         }
         h1 {
-            color: #ffcc00;
-            font-size: 36px;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards;
-        }
-        .opciones {
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 1s;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 10px;
-            background-color: #ffcc00;
+            font-size: 2.5em;
             color: #fff;
-            font-weight: bold;
-            transition: transform 0.3s ease, background 0.3s ease;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
-        button:hover {
-            background-color: #ffb700;
-            transform: scale(1.1);
+        .container {
+            margin-top: 50px;
         }
-        .contenido {
-            opacity: 0;
-            display: none;
-            animation: fadeIn 1.5s forwards;
-        }
-        p {
-            font-size: 20px;
-            margin: 20px;
+        .btn {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            background: #ffeb3b;
             color: #333;
-        }
-        .imagen-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-        img {
-            width: 80px;
-            height: 80px;
             border-radius: 10px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .flowers {
+            display: none;
+            margin-top: 20px;
+        }
+        .flower {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: inline-block;
+            transition: transform 0.5s ease-in-out;
+        }
+        .flower:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message {
+            display: none;
+            font-size: 1.8em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .petals {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: pink;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-10px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <h1>Elige una opción 🌼</h1>
-    
-    <div class="opciones">
-        <button onclick="mostrarFlor(1)">Una Flor</button>
-        <button onclick="mostrarFlor(100)">100 Flores</button>
+    <h1>Elige una opción</h1>
+    <div class="container">
+        <button class="btn" onclick="showFlowers(1)">Una flor</button>
+        <button class="btn" onclick="showFlowers(100)">100 flores</button>
+    </div>
+    <div id="flowerContainer" class="flowers"></div>
+    <div id="message" class="message">
+        Hola, Abril.<br>
+        Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca. Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos. Te amo demasiado.<br>
+        Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés. Porque si hay algo que tengo claro es que ningún gil te ama más que yo.
     </div>
     
-    <div id="contenido" class="contenido">
-        <p>
-            Hola, Abril.<br>
-            Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
-            Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
-            Te amo demasiado.<br>
-            Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés.<br>
-            Porque si hay algo que tengo claro, es que ningún gil te ama más que yo.
-        </p>
-
-        <div id="imagenContainer" class="imagen-container"></div>
-    </div>
-
     <script>
-        function mostrarFlor(cantidad) {
-            let contenido = document.getElementById("contenido");
-            let contenedor = document.getElementById("imagenContainer");
-
-            contenido.style.display = "block";
-            contenido.style.opacity = "1";
-
-            contenedor.innerHTML = "";
-            contenedor.style.opacity = "1";
-
-            for (let i = 0; i < cantidad; i++) {
+        function showFlowers(count) {
+            const container = document.getElementById("flowerContainer");
+            container.innerHTML = "";
+            
+            for (let i = 0; i < count; i++) {
                 let img = document.createElement("img");
-                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg";  
-                contenedor.appendChild(img);
+                img.src = "https://upload.wikimedia.org/wikipedia/commons/6/66/Simple_yellow_flower.png";
+                img.className = "flower fade-in";
+                container.appendChild(img);
             }
+            container.style.display = "block";
+            document.getElementById("message").style.display = "block";
         }
+
+        function createPetal() {
+            const petal = document.createElement("div");
+            petal.className = "petals";
+            petal.style.left = Math.random() * window.innerWidth + "px";
+            petal.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 5000);
+        }
+        setInterval(createPetal, 300);
     </script>
 </body>
 </html>
