@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para la piojosa 💛</title>
+    <title>Para la Piojosa 💛</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -39,17 +39,73 @@
         .carta:hover {
             transform: scale(1.05);
         }
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>TE AMOOOOOOO 💌</h1>
+        <h1>TE AMOOOOOOOOOOOOOO 💌</h1>
         <div class="cartas">
-            <div class="carta" onclick="alert('Hola, Abril. Sos muy hermosa en todos los aspectos, tu forma de ser, tu cara (es hermosa y linda), también cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. Yo no dejo de pensar en vos.')">Carta 1</div>
-            <div class="carta" onclick="alert('Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida.')">Carta 2</div>
-            <div class="carta" onclick="alert('Ningún gil te ama más que yo. Te amo, Abril.')">Carta 3</div>
-            <div class="carta" onclick="alert('No te quiero perder, yo te amo mucho.')">Carta 4</div>
+            <div class="carta" onclick="openModal('carta1')">Carta 1</div>
+            <div class="carta" onclick="openModal('carta2')">Carta 2</div>
+            <div class="carta" onclick="openModal('carta3')">Carta 3</div>
+            <div class="carta" onclick="openModal('carta4')">Carta 4</div>
         </div>
     </div>
+
+    <!-- Modales para cada carta -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(carta) {
+            const mensajes = {
+                carta1: "Hola, Abril. Sos muy hermosa en todos los aspectos. Tu forma de ser, tu cara (es hermosa y linda), incluso cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. Yo no dejo de pensar en vos.",
+                carta2: "Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida.",
+                carta3: "Ningún gil te ama más que yo. Te amo, Abril.",
+                carta4: "No te quiero perder. Yo te amo mucho."
+            };
+            document.getElementById("modal-text").innerText = mensajes[carta];
+            document.getElementById("modal").style.display = "block";
+        }
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
 </body>
 </html>
