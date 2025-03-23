@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para la Piojosa 💛</title>
+    <title>Para la piojosa 💛</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -35,26 +35,9 @@
             text-align: center;
             transition: transform 0.3s;
             cursor: pointer;
-            position: relative;
         }
         .carta:hover {
             transform: scale(1.05);
-        }
-        .mensaje {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            margin-top: 10px;
-        }
-        .carta.abierta .mensaje {
-            display: block;
         }
     </style>
 </head>
@@ -62,21 +45,11 @@
     <div class="container">
         <h1>TE AMOOOOOOO 💌</h1>
         <div class="cartas">
-            <div class="carta" onclick="toggleCarta(this)">Carta 1
-                <div class="mensaje">Hola, Abril. Sos muy hermosa en todos los aspectos, tu forma de ser, tu cara (es hermosa y linda), incluso cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. No dejo de pensar en vos. 💖</div>
-            </div>
-            <div class="carta" onclick="toggleCarta(this)">Carta 2
-                <div class="mensaje">Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida. 💕</div>
-            </div>
-            <div class="carta" onclick="toggleCarta(this)">Carta 3
-                <div class="mensaje">Ningún gil te ama más que yo. Te amo, Abril. Bañate</div>
-            </div>
+            <div class="carta" onclick="alert('Hola, Abril. Sos muy hermosa en todos los aspectos, tu forma de ser, tu cara (es hermosa y linda), también cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. Yo no dejo de pensar en vos.')">Carta 1</div>
+            <div class="carta" onclick="alert('Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida.')">Carta 2</div>
+            <div class="carta" onclick="alert('Ningún gil te ama más que yo. Te amo, Abril.')">Carta 3</div>
+            <div class="carta" onclick="alert('No te quiero perder, yo te amo mucho.')">Carta 4</div>
         </div>
     </div>
-    <script>
-        function toggleCarta(element) {
-            element.classList.toggle("abierta");
-        }
-    </script>
 </body>
 </html>
