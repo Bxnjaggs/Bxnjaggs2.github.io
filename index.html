@@ -3,90 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para la piojosa</title>
+    <title>Para la Piojosa 💖</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            text-align: center;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #ffefd5, #ffb6c1);
-            color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffd1dc, #ffaaaa);
+            overflow: hidden;
         }
         .container {
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .cards {
             display: flex;
+            gap: 20px;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 50px;
+            margin-top: 20px;
         }
         .card {
+            background: white;
             width: 150px;
             height: 200px;
-            background: white;
-            color: black;
-            margin: 10px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         }
         .card:hover {
             transform: scale(1.1);
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
         }
-        .message {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
         }
-        .close {
-            margin-top: 10px;
-            padding: 5px 10px;
-            border: none;
-            background: #ff6699;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+            opacity: 0.6;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>TE AMOOOOOO 💌</h1>
     <div class="container">
-        <div class="card" onclick="showMessage(0)">Carta 1</div>
-        <div class="card" onclick="showMessage(1)">Carta 2</div>
-        <div class="card" onclick="showMessage(2)">Carta 3</div>
+        <h1>TE AMOOOOOOO 💌</h1>
+        <div class="cards">
+            <div class="card">Carta 1</div>
+            <div class="card">Carta 2</div>
+            <div class="card">Carta 3</div>
+        </div>
     </div>
-
-    <div id="messageBox" class="message">
-        <p id="messageText"></p>
-        <button class="close" onclick="closeMessage()">Cerrar</button>
-    </div>
-
+    <div class="floating-hearts"></div>
     <script>
-        const messages = [
-            "Hola, Abril. Sos muy hermosa en todos los aspectos, tu forma de ser, tu cara (es hermosa y linda), también cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. Yo no dejo de pensar en vos.",
-            "Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida.",
-            "Ningún gil te ama más que yo, te amo Abril."
-        ];
-
-        function showMessage(index) {
-            document.getElementById("messageText").innerText = messages[index];
-            document.getElementById("messageBox").style.display = "block";
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.querySelector('.floating-hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
         }
-
-        function closeMessage() {
-            document.getElementById("messageBox").style.display = "none";
-        }
+        setInterval(createHeart, 500);
     </script>
 </body>
 </html>
