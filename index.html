@@ -3,112 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Amarillas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Cartas Interactivas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: 'Pacifico', cursive;
-            background-color: #fff8dc;
-            transition: background 0.5s ease-in-out;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #ffcc00, #ff6699);
+            color: white;
         }
-        h1 {
-            color: #ffcc00;
-            font-size: 36px;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards;
-        }
-        .opciones {
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 1s;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 10px;
-            background-color: #ffcc00;
-            color: #fff;
-            font-weight: bold;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-        button:hover {
-            background-color: #ffb700;
-            transform: scale(1.1);
-        }
-        .contenido {
-            opacity: 0;
-            display: none;
-            animation: fadeIn 1.5s forwards;
-        }
-        p {
-            font-size: 20px;
-            margin: 20px;
-            color: #333;
-        }
-        .imagen-container {
+        .container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
+            flex-wrap: wrap;
+            margin-top: 50px;
         }
-        img {
-            width: 80px;
-            height: 80px;
+        .card {
+            width: 150px;
+            height: 200px;
+            background: white;
+            color: black;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 10px;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            font-weight: 600;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+        }
+        .close {
+            margin-top: 10px;
+            padding: 5px 10px;
+            border: none;
+            background: #ff6699;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Elige una opción 🌼</h1>
-    
-    <div class="opciones">
-        <button onclick="mostrarFlor(1)">Una Flor</button>
-        <button onclick="mostrarFlor(100)">100 Flores</button>
+    <h1>Cartas para Abril 💌</h1>
+    <div class="container">
+        <div class="card" onclick="showMessage(0)">Carta 1</div>
+        <div class="card" onclick="showMessage(1)">Carta 2</div>
+        <div class="card" onclick="showMessage(2)">Carta 3</div>
     </div>
-    
-    <div id="contenido" class="contenido">
-        <p>
-            Hola, Abril.<br>
-            Te amo mucho, sos lo mejor que me pasó. Sos tan linda que te comería toda la boca.<br>
-            Sin vos, no sé quién soy, porque vos me hacés sentir re bien, tanto que no dejo de pensar en vos.<br>
-            Te amo demasiado.<br>
-            Y si algún día te animás, yo acá estoy, listo para hacerte feliz como te merecés.<br>
-            Porque si hay algo que tengo claro, es que ningún gil te ama más que yo.
-        </p>
 
-        <div id="imagenContainer" class="imagen-container"></div>
+    <div id="messageBox" class="message">
+        <p id="messageText"></p>
+        <button class="close" onclick="closeMessage()">Cerrar</button>
     </div>
 
     <script>
-        function mostrarFlor(cantidad) {
-            let contenido = document.getElementById("contenido");
-            let contenedor = document.getElementById("imagenContainer");
+        const messages = [
+            "Hola, Abril. Sos muy hermosa en todos los aspectos, tu forma de ser, tu cara (es hermosa y linda), incluso cuando te enojas. Sos lo mejor que me pasó y te valoro mucho. Yo no dejo de pensar en vos.",
+            "Decirte que te amo me queda corto, porque lo que siento por vos es más grande que cualquier palabra. Sos mi persona favorita, te amo mucho y te quiero para toda la vida.",
+            "Ningún gil te ama más que yo. Te amo, Abril."
+        ];
 
-            contenido.style.display = "block";
-            contenido.style.opacity = "1";
+        function showMessage(index) {
+            document.getElementById("messageText").innerText = messages[index];
+            document.getElementById("messageBox").style.display = "block";
+        }
 
-            contenedor.innerHTML = "";
-            contenedor.style.opacity = "1";
-
-            for (let i = 0; i < cantidad; i++) {
-                let img = document.createElement("img");
-                img.src = "https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg";  
-                contenedor.appendChild(img);
-            }
+        function closeMessage() {
+            document.getElementById("messageBox").style.display = "none";
         }
     </script>
 </body>
